@@ -1,4 +1,4 @@
 def nextMultiple(n, k):
-    return n + (k - n % k) if n % k else n
+    return ((k//n)+1)*n
 
-print(nextMultiple(7,7))
+print(nextMultiple(7,49))
