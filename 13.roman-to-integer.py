@@ -22,6 +22,10 @@ class Solution:
             'CM' : 900,
             'M' : 1000
             }
-        
+        def dfs(s, index, res):
+            if 
+            dfs()
+        return dfs(s, 0, 0)
+
 # @lc code=end
 
