@@ -13,8 +13,7 @@ class Solution:
         maxi = max(strs)
         for i in range(len(mini)):
             if mini[i] != maxi[i]:
-                return maxi[:i]
-        return mini[:]
-        
+                return mini[:i]
+        return mini        
 # @lc code=end
 

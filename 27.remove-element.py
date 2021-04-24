@@ -7,6 +7,7 @@
 # @lc code=start
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
+        nums.sort()
         l, r = 0, len(nums) - 1
         while l < r:
             if nums[l] < val:

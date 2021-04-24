@@ -1,3 +1,8 @@
+# @before-stub-for-debug-begin
+from python3problem26 import *
+from typing import *
+# @before-stub-for-debug-end
+
 #
 # @lc app=leetcode id=26 lang=python3
 #
@@ -7,6 +12,12 @@
 # @lc code=start
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
+        x = 1
+        for i in range(len(nums) - 1):
+            if nums[i] != nums[i + 1]:
+                nums[x] = nums[i + 1]
+                x += 1
+        return x
         
 # @lc code=end
 
