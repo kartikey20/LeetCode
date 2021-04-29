@@ -1,3 +1,8 @@
+# @before-stub-for-debug-begin
+from python3problem58 import *
+from typing import *
+# @before-stub-for-debug-end
+
 #
 # @lc app=leetcode id=58 lang=python3
 #
@@ -5,6 +10,8 @@
 #
 
 # @lc code=start
+
+
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
         l = s.split()
@@ -12,6 +19,5 @@ class Solution:
             return 0
         else:
             return len(l[-1])
-        
-# @lc code=end
 
+# @lc code=end
