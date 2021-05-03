@@ -10,9 +10,11 @@ from typing import *
 #
 
 # @lc code=start
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        def dfs(substr,index):
+        def dfs(substr, index):
             if substr[::-1] == substr:
                 return substr
             index -= 1
@@ -20,6 +22,5 @@ class Solution:
             dfs(substr, index)
         return dfs(s, len(s))
 
-        
-# @lc code=end
 
+# @lc code=end
