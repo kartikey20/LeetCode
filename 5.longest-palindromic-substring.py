@@ -17,9 +17,10 @@ class Solution:
         def dfs(substr, index):
             if substr[::-1] == substr:
                 return substr
-            index -= 1
-            substr = s[:index]
-            dfs(substr, index)
+            else:
+                index -= 1
+                substr = s[:index]
+                dfs(substr, index)
         return dfs(s, len(s))
 
 

@@ -1,23 +1,9 @@
-# @before-stub-for-debug-begin
-from python3problem53 import *
-from typing import *
-# @before-stub-for-debug-end
+def Fibonacci(n):
+    elif n == 0:
+        return 0
 
-#
-# @lc app=leetcode id=53 lang=python3
-#
-# [53] Maximum Subarray
-#
+    elif n == 1 or n == 2:
+        return 1
 
-# @lc code=start
-import itertools
-
-
-class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-        maxi = 0
-        for i in combinations(nums, len(nums)):
-            maxi = max(maxi, sum(i))
-        return maxi
-
-    # @lc code=end
+    else:
+        return Fibonacci(n-1) + Fibonacci(n-2)
