@@ -13,6 +13,3 @@ def editDistance(word1, word2):
             else:
                 dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
     return dp[m][n]
-
-
-print(editDistance("ro", "ro"))
