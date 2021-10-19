@@ -15,8 +15,8 @@ from typing import List
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         preMap = {i: [] for i in range(numCourses)}
-        for crs, pre in prerequisites:
-            preMap[crs].append([pre])
+        for x in prerequisites:
+            preMap[x[0]].append([x[1]])
         g = collections.defaultdict(list, preMap)
 
         def toposort(graph):
