@@ -7,32 +7,31 @@
 #
 
 # @lc code=start
+from math import ceil, floor, sqrt
+
+
 class Solution:
     def numSquares(self, n: int) -> int:
-        squares = [i*i for i in range(1, int(n**1/2))][::-1]
-
-        for i, _ in enumerate(squares):
-            if squares[i] > n:
-                squares.pop(i)
-
-        print(squares)
-
-        if n in squares:
-            return n
+        n_sqrt = sqrt(n)
+        if ceil(n_sqrt) == floor(n_sqrt):
+            return 1
+        perfect_squares = [i*i for i in range(1, int(n**1/2) + 1)][::-1]
+        squares = list(filter(lambda x: x < n, perfect_squares))
 
         l = len(squares)
 
         c = [float('inf')]
 
         def dfs(num, count):
-            count += 1
             if num < n:
-                print(l)
                 for i in range(l):
-                    dfs(num + squares[i], count[:])
+                    dfs(num + squares[i], count+1)
             if num == n:
                 c[0] = min(c[0], count)
         dfs(0, 0)
-        print(c)
+        return c[0] if c[0] != float('inf') else n
 
+
+A = Solution()
+print(A.numSquares(45))
 # @lc code=end
