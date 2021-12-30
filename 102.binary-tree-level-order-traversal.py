@@ -1,3 +1,8 @@
+# @before-stub-for-debug-begin
+from python3problem102 import *
+from typing import *
+# @before-stub-for-debug-end
+
 #
 # @lc app=leetcode id=102 lang=python3
 #
@@ -11,25 +16,29 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if root == None:
-            return []
-        queue = [[root.val]]
-
-        def bfs(node):
+        def bfs(start):
             res = []
-            if not node.left == None:
-                res.append(node.left.val)
-            if not node.right == None:
-                res.append(node.right.val)
-            if not len(res) == 0:
-                queue.append(res)
-            if not node.left == None:
-                bfs(node.left)
-            if not node.right == None:
-                bfs(node.right)
+            queue = [start]
+            temp = [[start.val]]
+            while queue:
+                res.append(temp)
+                temp.pop(0)
+                node = queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                    temp.append(node.left.val)
+                if node.right:
+                    queue.append(node.right)
+                    temp.append(node.right.val)
+            return res
+        if root:
+            return bfs(root)
+        else:
+            return []
 
-        return queue
 
 # @lc code=end

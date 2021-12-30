@@ -14,8 +14,20 @@ class Employee:
         self.subordinates = subordinates
 """
 
+from collections import defaultdict
+
+
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
-        
-# @lc code=end
+        graph = defaultdict(list)
+        # print(employees.subordinates)
 
+        def dfs(emp):
+            graph[emp.id] = [emp.importance, emp.subordinates]
+            # print(emp.id)
+            for node in emp.subordinates:
+                dfs(node)
+        dfs(employees)
+        print(graph)
+
+        # @lc code=end
