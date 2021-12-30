@@ -15,8 +15,27 @@ class Node:
         self.next = next
 """
 
+
 class Solution:
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        
-# @lc code=end
+        if root:
+            queue = [root]
+            layers = []
+            while queue:
+                curr_layer = []
+                layers.append(queue)
+                for x in queue:
+                    if x.left:
+                        curr_layer.append(x.left)
+                    if x.right:
+                        curr_layer.append(x.right)
 
+                queue = curr_layer
+
+            for x in layers:
+                for i in range(len(x)-1):
+                    x[i].next = x[i+1]
+            return root
+        else:
+            return root
+# @lc code=end
