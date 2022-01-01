@@ -8,34 +8,38 @@
 #
 
 # @lc code=start
-from typing import Sequence, Tuple
-
 
 class Solution:
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         def diff(word1, word2):
-            count = 0
-            for i in range(len(word1)):
-                if not word1[i] == word2[i]:
-                    count += 1
-            if count == 1:
-                return True
-            return False
+            if len(word1) == len(word2):
+                count = 0
+                for i in range(len(word1)):
+                    if not word1[i] == word2[i]:
+                        count += 1
+                        if count > 1:
+                            return False
+                return count == 1
+            else:
+                return False
 
         wordList.insert(0, beginWord)
-        sequences = []
-        visited = [False for _ in range(len(wordList))]
+        n = len(wordList)
+        visited = [False for _ in range(n)]
+        res = []
 
-        def dfs(word, index, path, visited):
+        def dfs(index, visited, n, path):
+            path.append(wordList[index])
             visited[index] = True
-            path.append(word)
-            for i in range(len(wordList)):
-                if not visited[i] and diff(word, wordList[i]):
-                    dfs(wordList[i], i, path[:], visited[:])
-            if word == endWord:
-                sequences.append(path)
-        dfs(beginWord, 0,  [], visited)
-        return sequences
+            for i in range(n):
+                if not visited[i]:
+                    if diff(wordList[index], wordList[i]):
+                        dfs(i, visited[:], n, path[:])
 
+            if wordList[index] == endWord:
+                res.append(path)
 
-# @lc code=end
+        dfs(0, visited, n, [])
+        return res
+
+        # @lc code=end

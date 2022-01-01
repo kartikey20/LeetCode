@@ -15,23 +15,21 @@ class Solution:
         n_sqrt = sqrt(n)
         if ceil(n_sqrt) == floor(n_sqrt):
             return 1
-        perfect_squares = [i*i for i in range(1, int(n**1/2) + 1)][::-1]
-        squares = list(filter(lambda x: x < n, perfect_squares))
+        else:
+            perfect_squares = [i*i for i in range(1, int(n_sqrt)+1)][::-1]
 
-        l = len(squares)
+            def bfs(num):
+                count = 0
+                queue = [[num, count]]
+                for x in queue:
+                    for v in perfect_squares:
+                        num = x[0] + v
+                        count = x[1] + 1
+                        queue.append([num, count])
+                        if num == n:
+                            return count
+            return bfs(0)
 
-        c = [float('inf')]
-
-        def dfs(num, count):
-            if num < n:
-                for i in range(l):
-                    dfs(num + squares[i], count+1)
-            if num == n:
-                c[0] = min(c[0], count)
-        dfs(0, 0)
-        return c[0] if c[0] != float('inf') else n
-
-
-A = Solution()
-print(A.numSquares(45))
+#   Time Complexity = O(n)
+#   Space Complexity = O(n)
 # @lc code=end
