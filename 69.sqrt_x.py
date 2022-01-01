@@ -5,9 +5,10 @@
 #
 import math
 # @lc code=start
+
+
 class Solution:
     def mySqrt(self, x: int) -> int:
         return math.floor(math.sqrt(x))
-        
-# @lc code=end
 
+# @lc code=end
