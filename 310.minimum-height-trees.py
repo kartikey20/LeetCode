@@ -10,6 +10,8 @@
 # @lc code=start
 from typing import List
 
+from copy import deepcopy
+
 
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
@@ -39,6 +41,7 @@ class Solution:
         for i in range(n):
             height = layers(i, visited[:])
             heights[i] = height
+
         min_height = min(heights)
         return [node for node in range(n) if heights[node] == min_height]
 

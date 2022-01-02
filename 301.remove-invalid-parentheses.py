@@ -23,20 +23,16 @@ class Solution:
                     if count < 0:
                         return False
             return count == 0
-        valid = set()
+        level = {s}
 
-        if is_valid(s):
-            return [s]
-        else:
-            for i in range(len(s)):
-                substr = s[:i] + s[i+1:]
-                if is_valid(substr):
-                    # print(substr)
-                    valid.add(substr)
-        ans = list(valid)
-        if len(ans) != 0:
-            return ans
-        else:
-            return [""]
+        while True:
+            valid = filter(is_valid, level)
+            if list(valid):
+                return list(valid)
+            new_level = {}
+            for s in level:
+                for i in range(len(s)):
+                    new_level.add(s[:i] + s[i+1:])
+            level = new_level
 
         # @lc code=end
