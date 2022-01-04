@@ -31,7 +31,6 @@ class Solution:
             if node.right:
                 curr_layer.append(node.right)
             queue = curr_layer
-        # print(layers)
         lastnode = layers[-1][0]
         return lastnode.val
         # if lastnode.left:
