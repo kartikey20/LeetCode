@@ -34,7 +34,8 @@ class Solution:
         def bfs(start):
             board, hand, step = start
             queue = [start]
-            visited = set([(board, hand)])
+            visited = set()
+            visited.add((board, hand))
 
             for x in queue:
                 curr_board, curr_hand, step = x
