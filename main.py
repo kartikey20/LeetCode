@@ -1,38 +1,19 @@
-from copy import deepcopy
-from math import floor
-N = int(input())
-M = int(input())
-K = int(input())
-graph = [[] for _ in range(N+1)]
-for i in range(M):
-    a, b, c, d = map(int, input().split())
-    graph[a].append([b, c, d])
-    graph[b].append([a, c, d])
-visited = [False for _ in range(N+1)]
-res = [float('inf')]
-
-# def bfs(start):
-#     queue = [[start, 0, float('inf')]]
-#     visited[start] = True
-#     for elem in queue:
-#         node, time, min_capacity = elem
-#         if node == N:
-#             # if time == 20:
-#             #     return True
-#             return time + K/min_capacity
-#         for child in graph[node]:
-#             if not visited[child[0]]:
-#                 visited[child[0]] = True
-#             queue.append([child[0], time+child[1], min(min_capacity, child[2])])
+from bisect import bisect_left, bisect_right
+arr = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
 
 
-def dfs(node, visited, time, min_capacity):
-    visited[node] = True
-    if node == N:
-        res[0] = min(res[0], floor(time + K/min_capacity))
-    for child in graph[node]:
-        if not visited[child[0]]:
-            dfs(child[0], deepcopy(visited), time+child[1], min(min_capacity, child[2]))
+# def negate(n):
+#     return -1*n
 
 
-print(dfs(1, deepcopy(visited), 0, float('inf')))
+# arr = list(map(negate, arr))
+
+sub = []
+for val in arr:
+    pos = bisect_left(sub, val)
+    print(pos)
+    if pos == len(sub):
+        sub.append(val)
+    else:
+        sub[pos] = val
+print(sub)

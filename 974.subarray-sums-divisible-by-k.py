@@ -5,6 +5,7 @@
 #
 from collections import defaultdict
 # @lc code=start
+from OpenSSL import SSL
 
 
 class Solution:
