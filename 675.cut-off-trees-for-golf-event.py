@@ -9,6 +9,8 @@
 
 # @lc code=start
 
+from typing import List
+
 
 class Solution:
     def cutOffTree(self, forest: List[List[int]]) -> int:
@@ -25,6 +27,7 @@ class Solution:
             visited[start[0]][start[1]] = True
             queue = [start]
             dist = start[2]
+
             for node in queue:
                 min_val = float('inf')
                 min_node = None
@@ -57,8 +60,8 @@ class Solution:
 
         res = bfs([0, 0, 0])
         forest[0][0] = 1
-        print(forest)
-        print(visited)
+        # print(forest)
+        # print(visited)
         for row in range(row_len):
             for col in range(col_len):
                 if forest[row][col] > 1:

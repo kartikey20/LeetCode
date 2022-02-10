@@ -10,30 +10,29 @@
 # @lc code=start
 
 
+from heapq import heappop, heappush
+import queue
+
+
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        graph = [[] for _ in range(n)]
+        graph = [[] for _ in range(3)]
+        for u, v, price in flights:
+            graph[u].append((v, price))
 
-        for i in range(n):
-            graph[flights[i][0]].append([flights[i][1], flights[i][2]])
+        cost = [float('inf') for _ in range(3)]
 
-        print(graph)
-
-        def bfs(start):
-            queue = [start]
-            min_cost = float('inf')
-            for node in queue:
-                for child in graph[node[0]]:
-                    cost = node[1] + child[1]
-                    count = node[2] + 1
-                    if count <= k:
-                        queue.append([child[0], cost, count])
-                    if child[0] == dst:
-                        min_cost = min(min_cost, cost)
-            print(queue)
-            return min_cost
-        res = bfs([src, 0, 0])
-        return res if not res == float('inf') else -1
+        def dijkstra(start, graph):
+            queue = [(start, 0, -1)]
+            cost[start] = 0
+            while queue:
+                parent, parent_cost, steps = heappop(queue)
+                if parent_cost == cost[parent]:
+                    for child, child_cost in graph[parent]:
+                        if child_cost+parent_cost < cost[child] and steps < k:
+                            child[cost] = child_cost + parent_cost
+                            heappush(queue, (child, cost[child], steps+1))
+        dijkstra(src)
 
 
 # @lc code=end

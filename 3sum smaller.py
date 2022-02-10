@@ -13,4 +13,12 @@ def longest_increasing_subsequence(arr):
     return len(sub)
 
 
-print(longest_increasing_subsequence([3, 2, 1, 4, 7, 8, 9, 10]))
+def isSubseq(x, y):
+    it = iter(y)
+    print(list(it))
+    return all(c in it for c in x)
+
+
+print(isSubseq([1, 2], [3, 2, 1, 4, 7, 8, 9, 10]))
+
+# print(longest_increasing_subsequence([3, 2, 1, 4, 7, 8, 9, 10]))

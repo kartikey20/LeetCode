@@ -3,8 +3,10 @@
 #
 # [324] Wiggle Sort II
 #
-
+from typing import List
 # @lc code=start
+
+
 class Solution:
     def wiggleSort(self, nums: List[int]) -> None:
         """

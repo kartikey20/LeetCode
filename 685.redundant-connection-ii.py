@@ -22,6 +22,7 @@ class Solution:
         def find(v):
             if v == parent[v]:
                 return v
+            parent[v] = v
             return find(parent[v])
 
         def union(u, v):
